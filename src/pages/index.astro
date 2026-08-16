@@ -1,0 +1,548 @@
+---
+const nombre = "Federico Medina Ospina";
+const programa = "Ingeniería de Sistemas";
+const asignatura = "Bases de Datos 2";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="E-portafolio académico de Federico Medina Ospina - Bases de Datos 2"
+		/>
+		<title>{nombre} | E-Portafolio</title>
+	</head>
+
+	<body>
+		<header class="navbar">
+			<div class="nav-container">
+				<a href="#inicio" class="logo">FMO</a>
+
+				<nav>
+					<a href="#inicio">Inicio</a>
+					<a href="#presentacion">Presentación</a>
+					<a href="#evidencias">Evidencias</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<!-- INICIO -->
+			<section id="inicio" class="hero">
+				<div class="hero-content">
+					<p class="eyebrow">E-PORTAFOLIO ACADÉMICO</p>
+
+					<h1>
+						Hola, soy<br />
+						<span>{nombre}</span>
+					</h1>
+
+					<p class="description">
+						Estudiante de <strong>{programa}</strong> con interés en el
+						desarrollo de software, las bases de datos y la tecnología.
+					</p>
+
+					<div class="buttons">
+						<a href="#presentacion" class="button primary">
+							Conocer más
+						</a>
+
+						<a href="#evidencias" class="button secondary">
+							Ver evidencias
+						</a>
+					</div>
+				</div>
+
+				<div class="hero-card">
+					<div class="avatar">
+						FM
+					</div>
+
+					<div class="card-info">
+						<p>{programa}</p>
+						<h2>{asignatura}</h2>
+						<span>Universidad El Bosque</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- PRESENTACIÓN -->
+			<section id="presentacion" class="section">
+				<div class="section-heading">
+					<p class="eyebrow">01 — PRESENTACIÓN</p>
+					<h2>Sobre mí</h2>
+				</div>
+
+				<div class="presentation-grid">
+					<div class="photo-placeholder">
+						<span>FM</span>
+						<p>Foto / Avatar</p>
+					</div>
+
+					<div class="presentation-text">
+						<h3>Federico Medina Ospina</h3>
+
+						<p>
+							Soy estudiante de Ingeniería de Sistemas y este espacio
+							será mi e-portafolio para la asignatura de
+							<strong>Bases de Datos 2</strong>.
+						</p>
+
+						<p>
+							En este sitio iré recopilando evidencias, proyectos,
+							ejercicios y aprendizajes desarrollados durante el
+							semestre.
+						</p>
+
+						<div class="course-box">
+							<span>ASIGNATURA</span>
+							<strong>Bases de Datos 2</strong>
+						</div>
+
+						<div class="video-placeholder">
+							<div class="play-icon">▶</div>
+							<h4>Video de presentación</h4>
+							<p>
+								Aquí irá mi video de presentación de 90–120 segundos.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- EVIDENCIAS -->
+			<section id="evidencias" class="section evidencias">
+				<div class="section-heading">
+					<p class="eyebrow">02 — EVIDENCIAS</p>
+					<h2>Mi trabajo</h2>
+					<p>
+						Espacio destinado a recopilar las actividades y proyectos
+						desarrollados durante el semestre.
+					</p>
+				</div>
+
+				<div class="evidence-grid">
+					<article class="evidence-card">
+						<span class="number">01</span>
+						<h3>SQL</h3>
+						<p>
+							Consultas, ejercicios y actividades relacionadas con
+							SQL.
+						</p>
+						<a href="#">Ver evidencias →</a>
+					</article>
+
+					<article class="evidence-card">
+						<span class="number">02</span>
+						<h3>PL/SQL Scripts</h3>
+						<p>
+							Scripts y ejercicios desarrollados con PL/SQL.
+						</p>
+						<a href="#">Ver evidencias →</a>
+					</article>
+
+					<article class="evidence-card">
+						<span class="number">03</span>
+						<h3>NoSQL</h3>
+						<p>
+							Actividades y aprendizajes relacionados con bases de
+							datos NoSQL.
+						</p>
+						<a href="#">Ver evidencias →</a>
+					</article>
+
+					<article class="evidence-card">
+						<span class="number">04</span>
+						<h3>Proyecto</h3>
+						<p>
+							Proyecto y entregables desarrollados durante el
+							semestre.
+						</p>
+						<a href="#">Ver proyecto →</a>
+					</article>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>© 2026 {nombre}</p>
+			<p>{programa} · {asignatura}</p>
+		</footer>
+	</body>
+</html>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
+	:global(body) {
+		font-family:
+			Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		background: #0b0d12;
+		color: #f5f7fa;
+		line-height: 1.6;
+	}
+
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 100;
+		background: rgba(11, 13, 18, 0.85);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.nav-container {
+		max-width: 1180px;
+		margin: 0 auto;
+		padding: 18px 24px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo {
+		width: 42px;
+		height: 42px;
+		display: grid;
+		place-items: center;
+		border-radius: 10px;
+		background: #ffffff;
+		color: #0b0d12;
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	nav {
+		display: flex;
+		gap: 30px;
+	}
+
+	nav a {
+		color: #aeb5c2;
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: color 0.2s ease;
+	}
+
+	nav a:hover {
+		color: #ffffff;
+	}
+
+	.hero {
+		min-height: 100vh;
+		max-width: 1180px;
+		margin: 0 auto;
+		padding: 150px 24px 100px;
+		display: grid;
+		grid-template-columns: 1.4fr 0.6fr;
+		gap: 80px;
+		align-items: center;
+	}
+
+	.eyebrow {
+		color: #8f98a8;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		margin-bottom: 18px;
+	}
+
+	h1 {
+		font-size: clamp(3.2rem, 7vw, 6.5rem);
+		line-height: 0.98;
+		letter-spacing: -0.06em;
+		margin-bottom: 30px;
+	}
+
+	h1 span {
+		color: #7c8cff;
+	}
+
+	.description {
+		max-width: 650px;
+		color: #aeb5c2;
+		font-size: 1.15rem;
+		margin-bottom: 35px;
+	}
+
+	.buttons {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+
+	.button {
+		padding: 13px 22px;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 600;
+		transition: transform 0.2s ease;
+	}
+
+	.button:hover {
+		transform: translateY(-2px);
+	}
+
+	.primary {
+		background: #ffffff;
+		color: #0b0d12;
+	}
+
+	.secondary {
+		border: 1px solid #343945;
+		color: #ffffff;
+	}
+
+	.hero-card {
+		padding: 35px;
+		border: 1px solid #292d36;
+		border-radius: 18px;
+		background: linear-gradient(145deg, #151821, #0f1117);
+		text-align: center;
+	}
+
+	.avatar {
+		width: 150px;
+		height: 150px;
+		margin: 0 auto 25px;
+		display: grid;
+		place-items: center;
+		border-radius: 50%;
+		background: #252b3b;
+		border: 1px solid #3a4153;
+		color: #ffffff;
+		font-size: 2.8rem;
+		font-weight: 800;
+	}
+
+	.card-info p {
+		color: #8f98a8;
+		font-size: 0.85rem;
+	}
+
+	.card-info h2 {
+		margin: 5px 0;
+		font-size: 1.3rem;
+	}
+
+	.card-info span {
+		color: #697181;
+		font-size: 0.8rem;
+	}
+
+	.section {
+		max-width: 1180px;
+		margin: 0 auto;
+		padding: 110px 24px;
+		scroll-margin-top: 70px;
+	}
+
+	.section-heading {
+		max-width: 700px;
+		margin-bottom: 55px;
+	}
+
+	.section-heading h2 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1;
+		margin-bottom: 18px;
+		letter-spacing: -0.04em;
+	}
+
+	.section-heading > p:last-child {
+		color: #8f98a8;
+	}
+
+	.presentation-grid {
+		display: grid;
+		grid-template-columns: 0.7fr 1.3fr;
+		gap: 70px;
+		align-items: start;
+	}
+
+	.photo-placeholder {
+		min-height: 430px;
+		border: 1px dashed #3a4150;
+		border-radius: 18px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: #11141b;
+	}
+
+	.photo-placeholder span {
+		font-size: 4rem;
+		font-weight: 800;
+		color: #555e70;
+	}
+
+	.photo-placeholder p {
+		color: #697181;
+		margin-top: 10px;
+	}
+
+	.presentation-text h3 {
+		font-size: 2rem;
+		margin-bottom: 20px;
+	}
+
+	.presentation-text > p {
+		color: #aeb5c2;
+		margin-bottom: 18px;
+	}
+
+	.course-box {
+		margin: 30px 0;
+		padding: 20px;
+		border-left: 3px solid #7c8cff;
+		background: #11141b;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.course-box span {
+		font-size: 0.7rem;
+		color: #697181;
+		letter-spacing: 0.12em;
+	}
+
+	.video-placeholder {
+		padding: 35px;
+		text-align: center;
+		border: 1px solid #292d36;
+		border-radius: 15px;
+		background: #11141b;
+	}
+
+	.play-icon {
+		width: 55px;
+		height: 55px;
+		margin: 0 auto 15px;
+		display: grid;
+		place-items: center;
+		border-radius: 50%;
+		background: #ffffff;
+		color: #0b0d12;
+	}
+
+	.video-placeholder h4 {
+		font-size: 1.2rem;
+		margin-bottom: 5px;
+	}
+
+	.video-placeholder p {
+		color: #697181;
+		font-size: 0.9rem;
+	}
+
+	.evidencias {
+		border-top: 1px solid #20242c;
+	}
+
+	.evidence-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 18px;
+	}
+
+	.evidence-card {
+		padding: 30px;
+		min-height: 240px;
+		border: 1px solid #292d36;
+		border-radius: 15px;
+		background: #11141b;
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.evidence-card:hover {
+		transform: translateY(-4px);
+		border-color: #596174;
+	}
+
+	.number {
+		color: #697181;
+		font-size: 0.8rem;
+	}
+
+	.evidence-card h3 {
+		font-size: 1.5rem;
+		margin: 25px 0 10px;
+	}
+
+	.evidence-card p {
+		color: #8f98a8;
+		margin-bottom: 20px;
+	}
+
+	.evidence-card a {
+		color: #ffffff;
+		text-decoration: none;
+		font-size: 0.9rem;
+		font-weight: 600;
+	}
+
+	footer {
+		max-width: 1180px;
+		margin: 0 auto;
+		padding: 35px 24px;
+		border-top: 1px solid #20242c;
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+		color: #697181;
+		font-size: 0.8rem;
+	}
+
+	@media (max-width: 800px) {
+		nav {
+			gap: 15px;
+		}
+
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 50px;
+		}
+
+		.presentation-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.photo-placeholder {
+			min-height: 300px;
+		}
+
+		.evidence-grid {
+			grid-template-columns: 1fr;
+		}
+
+		footer {
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 500px) {
+		nav a {
+			font-size: 0.75rem;
+		}
+
+		h1 {
+			font-size: 3.1rem;
+		}
+	}
+</style>
