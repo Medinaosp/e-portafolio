@@ -103,11 +103,14 @@ const asignatura = "Bases de Datos 2";
 						</div>
 
 						<div class="video-placeholder">
-							<div class="play-icon">▶</div>
 							<h4>Video de presentación</h4>
-							<p>
-								Aquí irá mi video de presentación de 90–120 segundos.
-							</p>
+
+							<video controls>
+								<source
+								src={`${import.meta.env.BASE_URL}video/vPortafolio.mp4`}									type="video/mp4"
+								/>
+								Tu navegador no soporta la reproducción de video.
+							</video>
 						</div>
 					</div>
 				</div>
@@ -428,25 +431,18 @@ const asignatura = "Bases de Datos 2";
 		background: #11141b;
 	}
 
-	.play-icon {
-		width: 55px;
-		height: 55px;
-		margin: 0 auto 15px;
-		display: grid;
-		place-items: center;
-		border-radius: 50%;
-		background: #ffffff;
-		color: #0b0d12;
-	}
-
 	.video-placeholder h4 {
 		font-size: 1.2rem;
-		margin-bottom: 5px;
+		margin-bottom: 20px;
 	}
 
-	.video-placeholder p {
-		color: #697181;
-		font-size: 0.9rem;
+	.video-placeholder video {
+		width: 100%;
+		max-width: 800px;
+		display: block;
+		margin: 0 auto;
+		border-radius: 10px;
+		background: #000000;
 	}
 
 	.evidencias {
