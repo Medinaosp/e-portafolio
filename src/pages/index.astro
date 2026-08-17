@@ -58,7 +58,7 @@ const asignatura = "Bases de Datos 2";
 
 				<div class="hero-card">
 					<div class="avatar">
-						FM
+						<img src="/e-portafolio/foto/foto1.jpeg" alt="Foto de Federico Medina" />
 					</div>
 
 					<div class="card-info">
@@ -78,8 +78,7 @@ const asignatura = "Bases de Datos 2";
 
 				<div class="presentation-grid">
 					<div class="photo-placeholder">
-						<span>FM</span>
-						<p>Foto / Avatar</p>
+						<img src="/e-portafolio/foto/foto1.jpeg" alt="Foto de Federico Medina" />
 					</div>
 
 					<div class="presentation-text">
@@ -316,17 +315,25 @@ const asignatura = "Bases de Datos 2";
 	}
 
 	.avatar {
-		width: 150px;
-		height: 150px;
-		margin: 0 auto 25px;
-		display: grid;
-		place-items: center;
-		border-radius: 50%;
-		background: #252b3b;
-		border: 1px solid #3a4153;
-		color: #ffffff;
-		font-size: 2.8rem;
-		font-weight: 800;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	overflow: hidden;
+	background: #252b3b;
+	border: 1px solid #3a4153;
+	}
+
+	.avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 50%;
+	display: block;
 	}
 
 	.card-info p {
@@ -384,6 +391,13 @@ const asignatura = "Bases de Datos 2";
 		justify-content: center;
 		background: #11141b;
 	}
+	.photo-placeholder img {
+	width: 100%;
+	height: 430px;
+	object-fit: cover;
+	border-radius: 18px;
+	display: block;
+		}
 
 	.photo-placeholder span {
 		font-size: 4rem;
