@@ -2,6 +2,86 @@
 const nombre = "Federico Medina Ospina";
 const programa = "Ingeniería de Sistemas";
 const asignatura = "Bases de Datos 2";
+const periodo = "2026-2";
+
+const evidencias = [
+	{
+		numero: "01",
+		titulo: "SQL y esquema HR",
+		tipo: "SQL",
+		descripcion: "Consultas, JOIN, subconsultas, funciones de agregación, NULL y vistas trabajadas sobre el esquema HR.",
+		href: "#sql",
+	},
+	{
+		numero: "02",
+		titulo: "PL/SQL — control",
+		tipo: "PL/SQL",
+		descripcion: "Bloques anónimos, IF, CASE, LOOP, WHILE, FOR, cursores implícitos, EXIT, CONTINUE y etiquetas.",
+		href: "#plsql",
+	},
+	{
+		numero: "03",
+		titulo: "Funciones almacenadas",
+		tipo: "PL/SQL",
+		descripcion: "Funciones, parámetros, RETURN, excepciones, DETERMINISTIC, RESULT_CACHE y organización en paquetes.",
+		href: "#funciones",
+	},
+	{
+		numero: "04",
+		titulo: "Transacciones y concurrencia",
+		tipo: "ORACLE",
+		descripcion: "Actualizaciones perdidas, bloqueos, FOR UPDATE, SKIP LOCKED, bloqueo optimista e interbloqueos.",
+		href: "#concurrencia",
+	},
+	{
+		numero: "05",
+		titulo: "Índices y optimización",
+		tipo: "ORACLE",
+		descripcion: "B-tree, Bitmap, índices funcionales, selectividad, estadísticas y lectura de planes de ejecución.",
+		href: "#indices",
+	},
+	{
+		numero: "06",
+		titulo: "Banco Andino",
+		tipo: "INTEGRADOR",
+		descripcion: "Caso integrador de SQL avanzado, concurrencia, índices, SQL analítico, jerarquías y MERGE.",
+		href: "#banco-andino",
+	},
+];
+
+
+const studyTopics = [
+	{
+		titulo: "SQL fundamental",
+		texto: "SELECT, restricciones, ordenamiento, funciones de fila, funciones de grupo, JOIN, subconsultas y operadores de conjunto.",
+		etiquetas: ["SELECT", "WHERE", "GROUP BY", "JOIN", "Subqueries", "Set Operators"],
+	},
+	{
+		titulo: "SQL avanzado",
+		texto: "CTE recursivas, funciones de ventana, ranking, acumulados, LAG, MERGE y consultas jerárquicas.",
+		etiquetas: ["RANK", "DENSE_RANK", "ROW_NUMBER", "OVER", "LAG", "MERGE"],
+	},
+	{
+		titulo: "PL/SQL",
+		texto: "Programación procedural dentro de Oracle mediante bloques, condiciones, ciclos, cursores y funciones almacenadas.",
+		etiquetas: ["IF", "CASE", "LOOP", "WHILE", "FOR", "FUNCTION"],
+	},
+	{
+		titulo: "Transacciones",
+		texto: "Control de operaciones concurrentes y consistencia mediante transacciones, bloqueos y estrategias de concurrencia.",
+		etiquetas: ["COMMIT", "ROLLBACK", "FOR UPDATE", "SKIP LOCKED", "Deadlock"],
+	},
+	{
+		titulo: "Optimización",
+		texto: "Interpretación del plan de ejecución y selección de índices según el patrón de consulta y la selectividad.",
+		etiquetas: ["EXPLAIN PLAN", "COST", "B-tree", "Bitmap", "Statistics"],
+	},
+	{
+		titulo: "NULL y lógica SQL",
+		texto: "Una comparación con NULL no funciona como una comparación convencional; para comprobar NULL se utiliza IS NULL o IS NOT NULL.",
+		etiquetas: ["NULL", "IS NULL", "NVL", "NOT IN"],
+	},
+];
 ---
 
 <!doctype html>
@@ -9,50 +89,35 @@ const asignatura = "Bases de Datos 2";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="E-portafolio académico de Federico Medina Ospina - Bases de Datos 2"
-		/>
-		<title>{nombre} | E-Portafolio</title>
+		<meta name="description" content="E-portafolio académico de Federico Medina Ospina — Bases de Datos 2." />
+		<title>{nombre} | Bases de Datos 2</title>
 	</head>
 
 	<body>
 		<header class="navbar">
 			<div class="nav-container">
 				<a href="#inicio" class="logo">FMO</a>
-
 				<nav>
-					<a href="#inicio">Inicio</a>
-					<a href="#presentacion">Presentación</a>
+					<a href="#presentacion">Perfil</a>
 					<a href="#evidencias">Evidencias</a>
+					<a href="#estudio">Estudio</a>
+					<a href="#investigaciones">Investigaciones</a>
 				</nav>
 			</div>
 		</header>
 
 		<main>
-			<!-- INICIO -->
 			<section id="inicio" class="hero">
 				<div class="hero-content">
-					<p class="eyebrow">E-PORTAFOLIO ACADÉMICO</p>
-
-					<h1>
-						Hola, soy<br />
-						<span>{nombre}</span>
-					</h1>
-
+					<p class="eyebrow">E-PORTAFOLIO ACADÉMICO · {periodo}</p>
+					<h1>Hola, soy<br /><span>{nombre}</span></h1>
 					<p class="description">
-						Estudiante de <strong>{programa}</strong> con interés en el
-						desarrollo de software, las bases de datos y la tecnología.
+						Este espacio documenta mi proceso de aprendizaje en <strong>{asignatura}</strong>:
+						SQL, PL/SQL, Oracle, optimización, transacciones y los talleres desarrollados durante el curso.
 					</p>
-
 					<div class="buttons">
-						<a href="#presentacion" class="button primary">
-							Conocer más
-						</a>
-
-						<a href="#evidencias" class="button secondary">
-							Ver evidencias
-						</a>
+						<a href="#evidencias" class="button primary">Ver evidencias</a>
+						<a href="#estudio" class="button secondary">Material de estudio</a>
 					</div>
 				</div>
 
@@ -60,497 +125,410 @@ const asignatura = "Bases de Datos 2";
 					<div class="avatar">
 						<img src="/e-portafolio/foto/foto1.jpeg" alt="Foto de Federico Medina" />
 					</div>
-
 					<div class="card-info">
 						<p>{programa}</p>
 						<h2>{asignatura}</h2>
-						<span>Universidad El Bosque</span>
+						<span>Universidad El Bosque · {periodo}</span>
 					</div>
 				</div>
 			</section>
 
-			<!-- PRESENTACIÓN -->
 			<section id="presentacion" class="section">
 				<div class="section-heading">
 					<p class="eyebrow">01 — PRESENTACIÓN</p>
 					<h2>Sobre mí</h2>
+					<p>El portafolio reúne evidencias reales, anotaciones y material de consulta para mostrar el proceso, no solamente el resultado final.</p>
 				</div>
 
 				<div class="presentation-grid">
 					<div class="photo-placeholder">
 						<img src="/e-portafolio/foto/foto1.jpeg" alt="Foto de Federico Medina" />
 					</div>
-
 					<div class="presentation-text">
 						<h3>Federico Medina Ospina</h3>
-
-						<p>
-							Soy estudiante de Ingeniería de Sistemas y este espacio
-							será mi e-portafolio para la asignatura de
-							<strong>Bases de Datos 2</strong>.
-						</p>
-
-						<p>
-							En este sitio iré recopilando evidencias, proyectos,
-							ejercicios y aprendizajes desarrollados durante el
-							semestre.
-						</p>
-
+						<p>Soy estudiante de Ingeniería de Sistemas y utilizo este e-portafolio para organizar el trabajo realizado en Bases de Datos 2.</p>
+						<p>La estructura está pensada para que una evidencia pueda consultarse junto con su concepto, código, explicación y aprendizaje asociado.</p>
 						<div class="course-box">
 							<span>ASIGNATURA</span>
-							<strong>Bases de Datos 2</strong>
+							<strong>{asignatura}</strong>
+							<small>Periodo académico: {periodo}</small>
 						</div>
-
 						<div class="video-placeholder">
-   							 <h4>Video de presentación</h4>
-
-   							 <video controls width="100%" preload="metadata">
-       							 <source src="/e-portafolio/video/vPortafolio.mp4" type="video/mp4" />
-       						 	Tu navegador no soporta la reproducción de video.
-   						 	</video>
+							<h4>Video de presentación</h4>
+							<video controls width="100%" preload="metadata">
+								<source src="/e-portafolio/video/vPortafolio.mp4" type="video/mp4" />
+								Tu navegador no soporta la reproducción de video.
+							</video>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<!-- EVIDENCIAS -->
 			<section id="evidencias" class="section evidencias">
 				<div class="section-heading">
 					<p class="eyebrow">02 — EVIDENCIAS</p>
-					<h2>Mi trabajo</h2>
-					<p>
-						Espacio destinado a recopilar las actividades y proyectos
-						desarrollados durante el semestre.
-					</p>
+					<h2>Lo que he trabajado</h2>
+					<p>Las categorías se separan por tema para que cada taller pueda crecer con capturas, scripts, resultados y reflexiones.</p>
 				</div>
 
 				<div class="evidence-grid">
-					<article class="evidence-card">
-						<span class="number">01</span>
-						<h3>SQL</h3>
-						<p>
-							Consultas, ejercicios y actividades relacionadas con
-							SQL.
-						</p>
-						<a href="#">Ver evidencias →</a>
+					{evidencias.map((e) => (
+						<article class="evidence-card">
+							<div><span class="number">{e.numero}</span><span class="tag">{e.tipo}</span></div>
+							<h3>{e.titulo}</h3>
+							<p>{e.descripcion}</p>
+							<a href={e.href}>Abrir sección →</a>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section id="sql" class="section detail-section">
+				<div class="section-heading">
+					<p class="eyebrow">03 — SQL</p>
+					<h2>Consultas y talleres SQL</h2>
+					<p>Ejercicios reales sobre el esquema HR y prácticas de SQL avanzado.</p>
+				</div>
+
+				<div class="two-column">
+					<article class="detail-card highlight">
+						<span class="card-label">ANOTACIÓN IMPORTANTE</span>
+						<h3>LEFT JOIN: cuidado con WHERE</h3>
+						<p>En el material de clase se compara filtrar una columna de la tabla derecha en WHERE frente a colocar el filtro en la condición ON. Mover el filtro cambia qué filas conserva el LEFT JOIN.</p>
+						<pre><code>-- Filtra después del JOIN
+WHERE E.SALARY &gt; 5000
+
+-- El filtro forma parte del JOIN
+ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+AND E.SALARY &gt; 5000</code></pre>
 					</article>
 
-					<article class="evidence-card">
-						<span class="number">02</span>
-						<h3>PL/SQL Scripts</h3>
-						<p>
-							Scripts y ejercicios desarrollados con PL/SQL.
-						</p>
-						<a href="#">Ver evidencias →</a>
+					<article class="detail-card highlight">
+						<span class="card-label">ANOTACIÓN IMPORTANTE</span>
+						<h3>NULL no se compara con =</h3>
+						<p>En las prácticas aparece el caso <code>NULL = NULL</code>. La comprobación correcta de ausencia de valor es <code>IS NULL</code>; <code>NVL</code> permite normalizar un valor nulo.</p>
+						<pre><code>WHERE jornada IS NULL
+
+NVL(jornada, 'X')</code></pre>
+					</article>
+				</div>
+
+				<div class="sql-layout">
+					<article class="detail-card">
+						<span class="card-label">JOIN PRACTICADOS</span>
+						<h3>Tipos de JOIN</h3>
+						<ul>
+							<li>LEFT JOIN</li>
+							<li>FULL OUTER JOIN</li>
+							<li>SELF JOIN</li>
+							<li>CROSS JOIN</li>
+							<li>NATURAL JOIN</li>
+							<li>JOIN ... USING</li>
+						</ul>
+						<p class="note">El SELF JOIN es especialmente útil para representar relaciones como empleado → jefe usando la misma tabla EMPLOYEES.</p>
 					</article>
 
-					<article class="evidence-card">
-						<span class="number">03</span>
-						<h3>NoSQL</h3>
-						<p>
-							Actividades y aprendizajes relacionados con bases de
-							datos NoSQL.
-						</p>
-						<a href="#">Ver evidencias →</a>
+					<article class="detail-card">
+						<span class="card-label">VISTAS</span>
+						<h3>VW_DEPARTAMENTO</h3>
+						<p>En la práctica de primera conexión se construyó una vista que relaciona EMPLEADO, DEPARTAMENTO, UBICACION, PAISES y REGION y filtra la región Europe.</p>
+						<pre><code>CREATE OR REPLACE VIEW VW_DEPARTAMENTO AS
+SELECT FIRST_NAME, LAST_NAME, SALARY, COUNTRY_NAME
+FROM EMPLEADO E
+JOIN DEPARTAMENTO D
+  ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+...</code></pre>
 					</article>
+				</div>
 
-					<article class="evidence-card">
-						<span class="number">04</span>
-						<h3>Proyecto</h3>
-						<p>
-							Proyecto y entregables desarrollados durante el
-							semestre.
-						</p>
-						<a href="#">Ver proyecto →</a>
+			</section>
+
+			<section id="plsql" class="section detail-section">
+				<div class="section-heading">
+					<p class="eyebrow">04 — PL/SQL</p>
+					<h2>Sentencias de control</h2>
+					<p>La práctica de PL/SQL está organizada paso a paso y utiliza DBMS_OUTPUT para observar la ejecución.</p>
+				</div>
+
+				<div class="study-grid">
+					<article class="study-card"><span class="number">01</span><h3>IF</h3><p>THEN, ELSE y ELSIF. La cascada se evalúa en orden y se detiene en la primera condición verdadera.</p></article>
+					<article class="study-card"><span class="number">02</span><h3>CASE</h3><p>CASE simple para comparar un selector y CASE buscado para evaluar condiciones.</p></article>
+					<article class="study-card"><span class="number">03</span><h3>LOOP / WHILE</h3><p>LOOP garantiza una entrada al cuerpo; WHILE evalúa la condición antes de entrar.</p></article>
+					<article class="study-card"><span class="number">04</span><h3>FOR</h3><p>Recorridos numéricos, REVERSE y FOR sobre cursor sin abrir ni cerrar manualmente el cursor.</p></article>
+					<article class="study-card"><span class="number">05</span><h3>EXIT / CONTINUE</h3><p>CONTINUE termina la iteración actual; EXIT termina el bucle indicado y puede trabajar con WHEN.</p></article>
+					<article class="study-card"><span class="number">06</span><h3>NULL</h3><p>Una condición puede ser TRUE, FALSE o NULL. Use IS NULL y tenga cuidado con condiciones que puedan quedar en NULL.</p></article>
+				</div>
+
+				<div class="code-demo">
+					<div>
+						<span class="card-label">EJERCICIO REAL DEL MATERIAL</span>
+						<h3>CONTINUE, EXIT y bucles anidados</h3>
+						<p>Este bloque forma parte del módulo de control PL/SQL y permite estudiar cómo saltar iteraciones y salir de un bucle externo mediante una etiqueta.</p>
+					</div>
+					<pre><code>BEGIN
+  &lt;&lt;externo&gt;&gt;
+  FOR i IN 1..6 LOOP
+    CONTINUE externo WHEN MOD(i,2) = 0;
+
+    FOR j IN 1..3 LOOP
+      EXIT externo WHEN i * j &gt; 12;
+      DBMS_OUTPUT.PUT_LINE(i || ' x ' || j || ' = ' || i*j);
+    END LOOP;
+  END LOOP externo;
+END;
+/</code></pre>
+				</div>
+
+			</section>
+
+			<section id="funciones" class="section detail-section">
+				<div class="section-heading">
+					<p class="eyebrow">05 — PL/SQL AVANZADO</p>
+					<h2>Funciones almacenadas</h2>
+					<p>Las diapositivas de funciones amplían el bloque anónimo hacia unidades almacenadas en la base de datos.</p>
+				</div>
+
+				<div class="two-column">
+					<article class="detail-card">
+						<span class="card-label">ESTRUCTURA</span>
+						<h3>CREATE FUNCTION</h3>
+						<pre><code>CREATE OR REPLACE FUNCTION fn_nota_definitiva(
+  p_corte1 IN NUMBER,
+  p_corte2 IN NUMBER,
+  p_corte3 IN NUMBER DEFAULT 0
+) RETURN NUMBER
+IS
+  v_nota NUMBER;
+BEGIN
+  -- cálculo
+  RETURN v_nota;
+END;
+/</code></pre>
+					</article>
+					<article class="detail-card">
+						<span class="card-label">CONCEPTOS</span>
+						<h3>Qué estudiar</h3>
+						<ul>
+							<li>Parámetros IN y valores por defecto.</li>
+							<li>RETURN y rutas completas de ejecución.</li>
+							<li>Excepciones como NO_DATA_FOUND y TOO_MANY_ROWS.</li>
+							<li>DETERMINISTIC y RESULT_CACHE.</li>
+							<li>PRAGMA UDF para funciones utilizadas desde SQL.</li>
+							<li>Especificación y cuerpo de paquetes.</li>
+							<li>SHOW ERRORS y USER_ERRORS para diagnosticar compilación.</li>
+						</ul>
 					</article>
 				</div>
 			</section>
+
+			<section id="concurrencia" class="section detail-section">
+				<div class="section-heading">
+					<p class="eyebrow">06 — ORACLE</p>
+					<h2>Transacciones, concurrencia y bloqueos</h2>
+					<p>Las prácticas utilizan dos sesiones reales para reproducir comportamientos que no aparecen trabajando en una sola conexión.</p>
+				</div>
+
+				<div class="three-column">
+					<article class="detail-card"><span class="card-label">PROBLEMA</span><h3>Actualización perdida</h3><p>Dos operaciones concurrentes pueden trabajar sobre el mismo dato y provocar una actualización perdida si el diseño no controla correctamente la concurrencia.</p></article>
+					<article class="detail-card"><span class="card-label">DEFENSA</span><h3>FOR UPDATE</h3><p>El bloqueo pesimista permite bloquear la fila antes de modificarla y coordinar el acceso entre sesiones.</p></article>
+					<article class="detail-card"><span class="card-label">COLA</span><h3>SKIP LOCKED</h3><p>Permite repartir trabajo entre procesos evitando que uno espere por filas que otro proceso ya está atendiendo.</p></article>
+				</div>
+
+			<div class="warning-box">
+				<strong>Regla de estudio:</strong> un bloqueo no siempre significa un error. En los talleres se provocan sentencias que quedan esperando para observar el comportamiento de concurrencia.
+			</div>
+		</section>
+
+		<section id="indices" class="section detail-section">
+			<div class="section-heading">
+				<p class="eyebrow">07 — OPTIMIZACIÓN</p>
+				<h2>Índices y planes de ejecución</h2>
+				<p>El objetivo no es crear índices indiscriminadamente, sino entender qué consulta concreta se quiere acelerar y cómo decide Oracle.</p>
+			</div>
+
+			<div class="study-grid">
+				<article class="study-card"><h3>B-tree</h3><p>Estructura por defecto. Es apropiada para búsquedas selectivas y puede ser única, no única o compuesta.</p></article>
+				<article class="study-card"><h3>Bitmap</h3><p>Está orientado a columnas de baja cardinalidad y escenarios analíticos; no es una sustitución general del B-tree.</p></article>
+				<article class="study-card"><h3>Índice funcional</h3><p>Permite indexar una expresión cuando la consulta aplica una función a la columna, como UPPER(nombre).</p></article>
+				<article class="study-card"><h3>Selectividad</h3><p>Si una condición devuelve gran parte de la tabla, el optimizador puede preferir un recorrido completo.</p></article>
+				<article class="study-card"><h3>Estadísticas</h3><p>Las estadísticas influyen en las estimaciones del optimizador. Una tabla con estadísticas desactualizadas puede producir otro plan.</p></article>
+				<article class="study-card"><h3>Plan</h3><p>En el material se trabajan EXPLAIN PLAN, Autotrace, COST, filas estimadas y consistent gets.</p></article>
+			</div>
+
+			<div class="code-demo">
+				<div><span class="card-label">ANOTACIÓN</span><h3>Un índice no garantiza que será utilizado</h3><p>Los talleres muestran casos donde el optimizador elige un recorrido completo porque puede resultar más barato para la cantidad de filas solicitada.</p></div>
+				<pre><code>EXPLAIN PLAN FOR
+SELECT *
+FROM venta
+WHERE id_cliente = 4321;
+
+SELECT *
+FROM TABLE(DBMS_XPLAN.DISPLAY(
+  NULL, NULL, 'BASIC +COST +ROWS +PREDICATE'
+));</code></pre>
+			</div>
+		</section>
+
+		<section id="banco-andino" class="section detail-section">
+			<div class="section-heading">
+				<p class="eyebrow">08 — TALLER INTEGRADOR</p>
+				<h2>Banco Andino</h2>
+				<p>El taller reúne en un mismo caso transacciones, concurrencia, bloqueos, índices, planes de ejecución y SQL avanzado.</p>
+			</div>
+
+			<div class="bank-grid">
+				<article class="bank-card"><span>PARTE 1</span><h3>Transacciones y concurrencia</h3><p>Actualización perdida, FOR UPDATE, bloqueo optimista, SKIP LOCKED, llave foránea sin índice e interbloqueo ORA-00060.</p></article>
+				<article class="bank-card"><span>PARTE 2</span><h3>Índices</h3><p>Plan antes/después, índices compuestos, funciones sobre columnas, decisiones del optimizador y costo de escritura.</p></article>
+				<article class="bank-card"><span>PARTE 3</span><h3>SQL avanzado</h3><p>Ranking, porcentaje por familia, acumulados, LAG, promedio móvil, jerarquía de tres niveles y MERGE.</p></article>
+				<article class="bank-card"><span>PARTE 4</span><h3>Reto integrador</h3><p>Identificación de defectos, secuencia corregida, bloqueo determinista y optimización de la consulta del tablero.</p></article>
+			</div>
+
+			
+		</section>
+
+		<section id="estudio" class="section study-section">
+			<div class="section-heading">
+				<p class="eyebrow">09 — MATERIAL DE ESTUDIO</p>
+				<h2>Guía rápida para estudiar</h2>
+				<p>Resumen organizado a partir de las diapositivas y scripts recibidos. Sirve como índice para volver rápidamente a cada concepto.</p>
+			</div>
+
+			<div class="study-grid">
+				{studyTopics.map((topic) => (
+					<article class="study-card">
+						<h3>{topic.titulo}</h3>
+						<p>{topic.texto}</p>
+						<div class="concept-list">{topic.etiquetas.map((tag) => <span>{tag}</span>)}</div>
+					</article>
+				))}
+			</div>
+
+			<div class="study-box">
+				<div><span class="card-label">MÉTODO DE REPASO</span><h3>Para cada taller</h3></div>
+				<ol>
+					<li>Identificar qué concepto está evaluando el ejercicio.</li>
+					<li>Leer la consulta o bloque antes de ejecutarlo.</li>
+					<li>Observar la salida y comparar con el resultado esperado.</li>
+					<li>Anotar la causa del resultado, no solamente la corrección.</li>
+					<li>Guardar captura del código y de la salida como evidencia.</li>
+				</ol>
+			</div>
+		</section>
+
+		<section id="investigaciones" class="section detail-section">
+			<div class="section-heading">
+				<p class="eyebrow">10 — INVESTIGACIONES Y ANOTACIONES</p>
+				<h2>Temas que vale la pena conservar</h2>
+				<p>Notas de investigación construidas alrededor de los problemas que aparecen en los talleres.</p>
+			</div>
+
+			<div class="research-grid">
+				<article class="research-card"><span class="card-label">01</span><h3>¿Por qué un índice puede no usarse?</h3><p>Relacionar selectividad, cantidad de filas, costo estimado y estadísticas. El optimizador puede preferir TABLE ACCESS FULL cuando recorrer el índice sería más costoso.</p></article>
+				<article class="research-card"><span class="card-label">02</span><h3>¿Qué cambia con NULL?</h3><p>Estudiar la lógica de tres valores y sus efectos en WHERE, NOT IN, agregaciones y LEFT JOIN.</p></article>
+				<article class="research-card"><span class="card-label">03</span><h3>¿Bloquear basta para evitar deadlocks?</h3><p>El caso Banco Andino muestra que dos transferencias cruzadas requieren un orden determinista de bloqueo; no basta con bloquear las filas.</p></article>
+				<article class="research-card"><span class="card-label">04</span><h3>¿Cuándo usar SQL y cuándo PL/SQL?</h3><p>Comparar el procesamiento declarativo de SQL con las estructuras procedurales de PL/SQL y observar el costo de procesar fila a fila frente a operaciones masivas.</p></article>
+				<article class="research-card"><span class="card-label">05</span><h3>ROWS vs RANGE</h3><p>Revisar cómo cambia una función de ventana cuando el marco se define por filas frente a valores del ordenamiento, especialmente cuando existen empates.</p></article>
+				<article class="research-card"><span class="card-label">06</span><h3>Funciones almacenadas</h3><p>Investigar dependencias, estado INVALID, privilegios, excepciones y el uso de funciones desde SQL según las diapositivas de PL/SQL.</p></article>
+			</div>
+		</section>
+
+		
 		</main>
 
 		<footer>
 			<p>© 2026 {nombre}</p>
-			<p>{programa} · {asignatura}</p>
+			<p>{programa} · {asignatura} · {periodo}</p>
 		</footer>
 	</body>
 </html>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
-
-	:global(html) {
-		scroll-behavior: smooth;
-	}
-
-	:global(body) {
-		font-family:
-			Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-		background: #0b0d12;
-		color: #f5f7fa;
-		line-height: 1.6;
-	}
-
-	.navbar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		z-index: 100;
-		background: rgba(11, 13, 18, 0.85);
-		backdrop-filter: blur(12px);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-	}
-
-	.nav-container {
-		max-width: 1180px;
-		margin: 0 auto;
-		padding: 18px 24px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.logo {
-		width: 42px;
-		height: 42px;
-		display: grid;
-		place-items: center;
-		border-radius: 10px;
-		background: #ffffff;
-		color: #0b0d12;
-		font-weight: 800;
-		text-decoration: none;
-	}
-
-	nav {
-		display: flex;
-		gap: 30px;
-	}
-
-	nav a {
-		color: #aeb5c2;
-		text-decoration: none;
-		font-size: 0.9rem;
-		transition: color 0.2s ease;
-	}
-
-	nav a:hover {
-		color: #ffffff;
-	}
-
-	.hero {
-		min-height: 100vh;
-		max-width: 1180px;
-		margin: 0 auto;
-		padding: 150px 24px 100px;
-		display: grid;
-		grid-template-columns: 1.4fr 0.6fr;
-		gap: 80px;
-		align-items: center;
-	}
-
-	.eyebrow {
-		color: #8f98a8;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		margin-bottom: 18px;
-	}
-
-	h1 {
-		font-size: clamp(3.2rem, 7vw, 6.5rem);
-		line-height: 0.98;
-		letter-spacing: -0.06em;
-		margin-bottom: 30px;
-	}
-
-	h1 span {
-		color: #7c8cff;
-	}
-
-	.description {
-		max-width: 650px;
-		color: #aeb5c2;
-		font-size: 1.15rem;
-		margin-bottom: 35px;
-	}
-
-	.buttons {
-		display: flex;
-		gap: 14px;
-		flex-wrap: wrap;
-	}
-
-	.button {
-		padding: 13px 22px;
-		border-radius: 8px;
-		text-decoration: none;
-		font-weight: 600;
-		transition: transform 0.2s ease;
-	}
-
-	.button:hover {
-		transform: translateY(-2px);
-	}
-
-	.primary {
-		background: #ffffff;
-		color: #0b0d12;
-	}
-
-	.secondary {
-		border: 1px solid #343945;
-		color: #ffffff;
-	}
-
-	.hero-card {
-		padding: 35px;
-		border: 1px solid #292d36;
-		border-radius: 18px;
-		background: linear-gradient(145deg, #151821, #0f1117);
-		text-align: center;
-	}
-
-	.avatar {
-	width: 150px;
-	height: 150px;
-	margin: 0 auto 25px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	overflow: hidden;
-	background: #252b3b;
-	border: 1px solid #3a4153;
-	}
-
-	.avatar img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-	border-radius: 50%;
-	display: block;
-	}
-
-	.card-info p {
-		color: #8f98a8;
-		font-size: 0.85rem;
-	}
-
-	.card-info h2 {
-		margin: 5px 0;
-		font-size: 1.3rem;
-	}
-
-	.card-info span {
-		color: #697181;
-		font-size: 0.8rem;
-	}
-
-	.section {
-		max-width: 1180px;
-		margin: 0 auto;
-		padding: 110px 24px;
-		scroll-margin-top: 70px;
-	}
-
-	.section-heading {
-		max-width: 700px;
-		margin-bottom: 55px;
-	}
-
-	.section-heading h2 {
-		font-size: clamp(2.5rem, 5vw, 4rem);
-		line-height: 1;
-		margin-bottom: 18px;
-		letter-spacing: -0.04em;
-	}
-
-	.section-heading > p:last-child {
-		color: #8f98a8;
-	}
-
-	.presentation-grid {
-		display: grid;
-		grid-template-columns: 0.7fr 1.3fr;
-		gap: 70px;
-		align-items: start;
-	}
-
-	.photo-placeholder {
-		min-height: 430px;
-		border: 1px dashed #3a4150;
-		border-radius: 18px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		background: #11141b;
-	}
-	.photo-placeholder img {
-	width: 100%;
-	height: 430px;
-	object-fit: cover;
-	border-radius: 18px;
-	display: block;
-		}
-
-	.photo-placeholder span {
-		font-size: 4rem;
-		font-weight: 800;
-		color: #555e70;
-	}
-
-	.photo-placeholder p {
-		color: #697181;
-		margin-top: 10px;
-	}
-
-	.presentation-text h3 {
-		font-size: 2rem;
-		margin-bottom: 20px;
-	}
-
-	.presentation-text > p {
-		color: #aeb5c2;
-		margin-bottom: 18px;
-	}
-
-	.course-box {
-		margin: 30px 0;
-		padding: 20px;
-		border-left: 3px solid #7c8cff;
-		background: #11141b;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.course-box span {
-		font-size: 0.7rem;
-		color: #697181;
-		letter-spacing: 0.12em;
-	}
-
-	.video-placeholder {
-		padding: 35px;
-		text-align: center;
-		border: 1px solid #292d36;
-		border-radius: 15px;
-		background: #11141b;
-	}
-
-	.video-placeholder h4 {
-		font-size: 1.2rem;
-		margin-bottom: 20px;
-	}
-
-	.video-placeholder video {
-		width: 100%;
-		max-width: 800px;
-		display: block;
-		margin: 0 auto;
-		border-radius: 10px;
-		background: #000000;
-	}
-
-	.evidencias {
-		border-top: 1px solid #20242c;
-	}
-
-	.evidence-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 18px;
-	}
-
-	.evidence-card {
-		padding: 30px;
-		min-height: 240px;
-		border: 1px solid #292d36;
-		border-radius: 15px;
-		background: #11141b;
-		transition:
-			transform 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.evidence-card:hover {
-		transform: translateY(-4px);
-		border-color: #596174;
-	}
-
-	.number {
-		color: #697181;
-		font-size: 0.8rem;
-	}
-
-	.evidence-card h3 {
-		font-size: 1.5rem;
-		margin: 25px 0 10px;
-	}
-
-	.evidence-card p {
-		color: #8f98a8;
-		margin-bottom: 20px;
-	}
-
-	.evidence-card a {
-		color: #ffffff;
-		text-decoration: none;
-		font-size: 0.9rem;
-		font-weight: 600;
-	}
-
-	footer {
-		max-width: 1180px;
-		margin: 0 auto;
-		padding: 35px 24px;
-		border-top: 1px solid #20242c;
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		color: #697181;
-		font-size: 0.8rem;
-	}
-
-	@media (max-width: 800px) {
-		nav {
-			gap: 15px;
-		}
-
-		.hero {
-			grid-template-columns: 1fr;
-			gap: 50px;
-		}
-
-		.presentation-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.photo-placeholder {
-			min-height: 300px;
-		}
-
-		.evidence-grid {
-			grid-template-columns: 1fr;
-		}
-
-		footer {
-			flex-direction: column;
-		}
-	}
-
-	@media (max-width: 500px) {
-		nav a {
-			font-size: 0.75rem;
-		}
-
-		h1 {
-			font-size: 3.1rem;
-		}
-	}
+	:global(*) { box-sizing: border-box; margin: 0; padding: 0; }
+	:global(html) { scroll-behavior: smooth; }
+	:global(body) { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0b0d12; color: #f5f7fa; line-height: 1.6; }
+	.navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(11,13,18,.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.08); }
+	.nav-container { max-width: 1180px; margin: auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+	.logo { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; background: #fff; color: #0b0d12; font-weight: 800; text-decoration: none; }
+	nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+	nav a { color: #aeb5c2; text-decoration: none; font-size: .82rem; }
+	nav a:hover { color: #fff; }
+	.hero { min-height: 100vh; max-width: 1180px; margin: auto; padding: 150px 24px 100px; display: grid; grid-template-columns: 1.35fr .65fr; gap: 80px; align-items: center; }
+	.eyebrow { color: #8f98a8; font-size: .76rem; font-weight: 700; letter-spacing: .18em; margin-bottom: 18px; }
+	h1 { font-size: clamp(3.2rem,7vw,6.5rem); line-height: .98; letter-spacing: -.06em; margin-bottom: 30px; }
+	h1 span { color: #7c8cff; }
+	.description { max-width: 700px; color: #aeb5c2; font-size: 1.1rem; margin-bottom: 35px; }
+	.buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+	.button { padding: 13px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+	.primary { background: #fff; color: #0b0d12; }
+	.secondary { border: 1px solid #343945; color: #fff; }
+	.hero-card { padding: 35px; border: 1px solid #292d36; border-radius: 18px; background: linear-gradient(145deg,#151821,#0f1117); text-align: center; }
+	.avatar { width: 150px; height: 150px; margin: auto auto 25px; border-radius: 50%; overflow: hidden; background: #252b3b; border: 1px solid #3a4153; }
+	.avatar img { width: 100%; height: 100%; object-fit: cover; }
+	.card-info p { color: #8f98a8; font-size: .85rem; }
+	.card-info h2 { margin: 5px 0; font-size: 1.3rem; }
+	.card-info span { color: #697181; font-size: .8rem; }
+	.section { max-width: 1180px; margin: auto; padding: 110px 24px; scroll-margin-top: 70px; }
+	.section-heading { max-width: 800px; margin-bottom: 55px; }
+	.section-heading h2 { font-size: clamp(2.5rem,5vw,4rem); line-height: 1; margin-bottom: 18px; letter-spacing: -.04em; }
+	.section-heading > p:last-child { color: #8f98a8; }
+	.presentation-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; }
+	.photo-placeholder { min-height: 430px; border: 1px solid #292d36; border-radius: 18px; overflow: hidden; background: #11141b; }
+	.photo-placeholder img { width: 100%; height: 430px; object-fit: cover; }
+	.presentation-text h3 { font-size: 2rem; margin-bottom: 20px; }
+	.presentation-text > p { color: #aeb5c2; margin-bottom: 18px; }
+	.course-box { margin: 30px 0; padding: 20px; border-left: 3px solid #7c8cff; background: #11141b; display: flex; flex-direction: column; }
+	.course-box span,.card-label { font-size: .7rem; color: #697181; letter-spacing: .12em; font-weight: 700; }
+	.course-box small { color: #697181; margin-top: 4px; }
+	.video-placeholder { padding: 25px; border: 1px solid #292d36; border-radius: 15px; background: #11141b; }
+	.video-placeholder h4 { margin-bottom: 18px; }
+	.video-placeholder video { width: 100%; display: block; border-radius: 10px; background: #000; }
+	.evidencias,.detail-section,.study-section { border-top: 1px solid #20242c; }
+	.evidence-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+	.evidence-card,.detail-card,.study-card,.research-card,.reflection-card { padding: 30px; border: 1px solid #292d36; border-radius: 15px; background: #11141b; }
+	.evidence-card:hover,.detail-card:hover,.study-card:hover,.research-card:hover { border-color: #596174; transform: translateY(-3px); transition: .2s ease; }
+	.number { color: #697181; font-size: .8rem; font-weight: 700; }
+	.tag { display: inline-block; margin-left: 10px; padding: 4px 8px; border: 1px solid #343945; border-radius: 999px; color: #8f98a8; font-size: .63rem; letter-spacing: .08em; }
+	.evidence-card h3,.detail-card h3,.study-card h3,.research-card h3,.reflection-card h3 { font-size: 1.4rem; margin: 18px 0 10px; }
+	.evidence-card p,.detail-card p,.study-card p,.research-card p,.reflection-card p { color: #8f98a8; margin-bottom: 18px; }
+	.evidence-card a,.research-card a { color: #fff; text-decoration: none; font-size: .88rem; font-weight: 600; }
+	.two-column { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-bottom: 18px; }
+	.three-column { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+	.sql-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; margin-top: 18px; }
+	.detail-card ul { padding-left: 20px; color: #aeb5c2; }
+	.detail-card li { margin-bottom: 9px; }
+	.highlight { background: linear-gradient(145deg,#151821,#11141b); }
+	pre { overflow-x: auto; padding: 20px; border-radius: 10px; background: #090b0f; border: 1px solid #242833; margin-top: 18px; }
+	code { color: #d9deea; font-family: "Cascadia Code","Fira Code",Consolas,monospace; font-size: .84rem; }
+	.note { padding: 14px 16px; border-left: 2px solid #7c8cff; background: #151821; }
+	.file-list { margin-top: 18px; border: 1px solid #292d36; border-radius: 15px; overflow: hidden; background: #11141b; }
+	.file-list-heading { padding: 25px 30px; border-bottom: 1px solid #292d36; }
+	.file-list-heading h3 { margin-top: 6px; }
+	.file-row { display: grid; grid-template-columns: .65fr 1.35fr; gap: 25px; padding: 17px 30px; border-bottom: 1px solid #20242c; }
+	.file-row:last-child { border-bottom: 0; }
+	.file-row span { color: #8f98a8; font-size: .9rem; }
+	.file-link { display: inline-block; margin-left: 12px; color: #7c8cff; text-decoration: none; font-size: .72rem; font-weight: 700; }
+	.file-link:hover { text-decoration: underline; }
+	.study-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+	.concept-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+	.concept-list span { padding: 6px 9px; border: 1px solid #303542; border-radius: 7px; color: #aeb5c2; font-size: .72rem; }
+	.code-demo { margin-top: 18px; padding: 28px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; border: 1px solid #292d36; border-radius: 15px; background: linear-gradient(145deg,#151821,#101218); }
+	.warning-box { margin-top: 18px; padding: 20px; border-left: 3px solid #7c8cff; background: #151821; color: #aeb5c2; }
+	.bank-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+	.bank-card { padding: 28px; border: 1px solid #292d36; border-radius: 15px; background: #11141b; }
+	.bank-card span { color: #7c8cff; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
+	.bank-card h3 { margin: 12px 0 8px; }
+	.bank-card p { color: #8f98a8; }
+	.diagram-placeholder { min-height: 220px; margin-top: 18px; border: 1px dashed #3a4150; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #697181; padding: 25px; }
+	.diagram-placeholder strong { color: #aeb5c2; font-size: 1.2rem; margin: 7px 0; }
+	.diagram-placeholder small { max-width: 700px; }
+	.study-box { margin-top: 18px; padding: 28px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; border: 1px solid #292d36; border-radius: 15px; background: linear-gradient(145deg,#151821,#101218); }
+	.study-box h3 { margin-top: 7px; }
+	.study-box ol { padding-left: 20px; color: #aeb5c2; }
+	.study-box li { margin-bottom: 8px; }
+	.research-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+	.reflection-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+	.reflection-card span { color: #697181; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
+	footer { max-width: 1180px; margin: auto; padding: 35px 24px; border-top: 1px solid #20242c; display: flex; justify-content: space-between; color: #697181; font-size: .8rem; }
+	@media (max-width: 900px) { .hero,.presentation-grid,.sql-layout,.code-demo,.study-box { grid-template-columns: 1fr; } .study-grid,.research-grid,.reflection-grid,.three-column { grid-template-columns: 1fr; } }
+	@media (max-width: 650px) { nav { gap: 10px; } nav a { font-size: .7rem; } .evidence-grid,.two-column,.bank-grid { grid-template-columns: 1fr; } h1 { font-size: 3.1rem; } .file-row { grid-template-columns: 1fr; gap: 8px; } footer { flex-direction: column; } }
 </style>
