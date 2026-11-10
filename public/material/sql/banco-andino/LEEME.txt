@@ -1,0 +1,104 @@
+=======================================================================
+ BASES DE DATOS 2 · TALLER INTEGRADOR — Banco Andino
+ Duración: 1 hora 30 minutos · Trabajo en parejas
+=======================================================================
+
+TODO EL TALLER SE RESUELVE CON SQL
+----------------------------------
+
+No se necesita PL/SQL en ningún punto. Las únicas líneas que empiezan
+con EXEC son llamadas de una sola línea a DBMS_STATS para recalcular
+estadísticas; son un comando del cliente, no programación.
+
+
+ANTES DE EMPEZAR
+----------------
+
+1. Cada pareja necesita DOS CONEXIONES en SQL Developer, no dos hojas
+   de trabajo sobre la misma conexión.
+
+   Cómo crearlas:
+     - En el panel Conexiones, clic derecho sobre su conexión existente
+       > Copiar. Nómbrela por ejemplo  BANCO_B.
+     - Ahora tiene MERCA_A y BANCO_B, ambas con el mismo usuario.
+     - Abra una hoja de trabajo sobre cada una.
+
+   Verifíquelo ejecutando en las dos:
+     SELECT SYS_CONTEXT('USERENV','SID') FROM dual;
+   Los dos números deben ser DISTINTOS. Si son iguales, no hay dos
+   sesiones y ningún ejercicio de bloqueos va a funcionar.
+
+2. AUTOCOMMIT APAGADO en las dos conexiones.
+     Herramientas > Preferencias > Base de datos > Avanzado
+     > Autoconfirmar   (debe estar DESMARCADO)
+
+   Comprobación rápida: ejecute un UPDATE cualquiera. Los botones
+   Confirmar (F11) y Deshacer (F12) deben activarse. Si quedan grises,
+   el autocommit está encendido.
+
+3. Conéctese al servicio TP o LOW de la Autonomous Database.
+   Los servicios MEDIUM y HIGH activan paralelismo y distorsionan los
+   planes de ejecución que vamos a analizar.
+
+
+ORDEN DE LOS ARCHIVOS
+---------------------
+
+  00_setup.sql        Una sola vez por pareja, en UNA conexión.
+                      Ejecutar con Run Script (F5). Tarda 2 a 4 minutos.
+
+  01_sesion_A.sql     Parte 1 — Transacciones, concurrencia y bloqueos.
+  01_sesion_B.sql     Se ejecutan ALTERNANDO entre las dos conexiones,
+                      siguiendo la numeración de PASOS. Nunca corra uno
+                      de los dos archivos completo.
+
+  02_indices.sql      Parte 2 — Índices y optimización.
+                      A partir de aquí, UNA SOLA CONEXIÓN por pareja.
+                      Los dos comparten el mismo esquema: si ambos crean
+                      índices o insertan al mismo tiempo, se bloquean.
+                      Uno maneja el teclado, los dos discuten.
+
+  03_sql_avanzado.sql Parte 3 — SQL analítico, jerárquico y MERGE.
+
+  04_reto.sql         Parte 4 — Reto integrador. Es lo que se entrega.
+                      Se resuelve con SELECT ... FOR UPDATE con ORDER BY
+                      y control de transacción. Solo SQL.
+
+  99_limpieza.sql     Al final de la sesión.
+
+
+DISTRIBUCIÓN DEL TIEMPO
+-----------------------
+
+  0:00 - 0:10   Preparación, conexiones y setup
+  0:10 - 0:35   Parte 1 · Transacciones y concurrencia
+  0:35 - 0:55   Parte 2 · Índices y optimización
+  0:55 - 1:10   Parte 3 · SQL avanzado
+  1:10 - 1:25   Parte 4 · Reto integrador
+  1:25 - 1:30   Cierre y entrega
+
+
+QUÉ SE ENTREGA
+--------------
+
+  Un archivo .sql con las consultas que escribieron y el procedimiento
+  corregido, más un documento corto con las respuestas a las preguntas
+  numeradas y las capturas de los planes de ejecución.
+
+  Ambos archivos deben llevar los nombres de los dos integrantes.
+
+
+SI ALGO FALLA
+-------------
+
+  - "ORA-00054: resource busy"  -> es parte del ejercicio 1.4, no es un
+    error suyo.
+  - "ORA-00060: deadlock"       -> es el ejercicio 1.6, felicitaciones.
+  - Una sentencia que no responde y no da error -> está bloqueada por la
+    otra conexión. Es lo esperado. No la cancele: siga el guion.
+  - Si perdió el hilo, ejecute ROLLBACK en las dos conexiones y reinicie
+    el ejercicio desde su PASO 1.
+  - "ORA-02014" al usar FETCH FIRST con FOR UPDATE -> por eso los scripts
+    usan ROWNUM en la cola de compensación. No lo cambie.
+  - Si una línea EXEC DBMS_STATS... no corre con Ctrl+Enter, ejecútela
+    con Run Script (F5).

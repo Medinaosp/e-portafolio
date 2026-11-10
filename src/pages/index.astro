@@ -7,9 +7,9 @@ const periodo = "2026-2";
 const evidencias = [
 	{
 		numero: "01",
-		titulo: "SQL y esquema HR",
+		titulo: "SQL avanzado y esquema HR",
 		tipo: "SQL",
-		descripcion: "Consultas, JOIN, subconsultas, funciones de agregación, NULL y vistas trabajadas sobre el esquema HR.",
+		descripcion: "Diagnóstico de consultas que devuelven resultados incorrectos, además de JOIN, subconsultas, agregación, NULL y vistas.",
 		href: "#sql",
 	},
 	{
@@ -44,8 +44,139 @@ const evidencias = [
 		numero: "06",
 		titulo: "Banco Andino",
 		tipo: "INTEGRADOR",
-		descripcion: "Caso integrador de SQL avanzado, concurrencia, índices, SQL analítico, jerarquías y MERGE.",
+		descripcion: "Transferencia bancaria con bloqueo determinista, débito, crédito, registro contable y confirmación atómica.",
 		href: "#banco-andino",
+	},
+];
+
+const practicalEvidences = [
+	{
+		numero: "01",
+		area: "SQL AVANZADO · ESQUEMA HR",
+		titulo: "Detectar consultas que responden mal sin dar error",
+		contexto: "El taller plantea cinco consultas que se ejecutan, pero no cumplen su enunciado. El reto es explicar el mecanismo que produce el resultado incorrecto.",
+		objetivo: "Identificar el defecto lógico, corregir la consulta y justificar por qué cambia el resultado.",
+		estrategia: "Contrastar cada salida con el enunciado, revisar JOIN, agrupación, NULL y filtros, y dejar en el script la consulta corregida junto con la explicación.",
+		aprendizaje: "Que SQL termine sin error no demuestra que la respuesta sea correcta; hay que validar la lógica y la cardinalidad de los datos.",
+		archivo: "consultas_defectuosas.sql",
+		destino: "sql",
+	},
+	{
+		numero: "02",
+		area: "SQL AVANZADO · TRANSACCIONES",
+		titulo: "Transferencia consistente en Banco Andino",
+		contexto: "El reto final parte de dos cuentas y una transferencia registrada. Una operación incompleta podría dejar saldos y movimientos contables desalineados.",
+		objetivo: "Procesar el débito, el crédito, los dos movimientos y el cambio de estado como una sola unidad de trabajo.",
+		estrategia: "Bloquear ambas cuentas en orden determinista, validar los saldos, aplicar los cambios, revisar el estado y confirmar al final.",
+		aprendizaje: "El orden de los bloqueos reduce el riesgo de interbloqueo; confirmar al final mantiene juntos los cambios de una transferencia.",
+		archivo: "banco-andino/04_reto.sql",
+		destino: "banco-andino",
+	},
+	{
+		numero: "03",
+		area: "SQL AVANZADO · OPTIMIZACIÓN",
+		titulo: "Comparar planes antes y después de crear un índice",
+		contexto: "Las demostraciones usan una misma consulta para observar el acceso por llave, la búsqueda sin índice y la búsqueda tras crear un índice.",
+		objetivo: "Leer el plan de ejecución y relacionar el acceso elegido con la selectividad y el número de filas solicitado.",
+		estrategia: "Ejecutar cada bloque del script por separado y comparar DBMS_XPLAN antes y después del índice, incluyendo el caso que devuelve muchas filas.",
+		aprendizaje: "Un índice puede acelerar búsquedas selectivas, pero no garantiza que el optimizador lo elija cuando recorrer muchas filas resulta más barato.",
+		archivo: "banco-andino/02_indices.sql",
+		destino: "indices",
+	},
+	{
+		numero: "04",
+		area: "PL/SQL · CONTROL",
+		titulo: "Controlar iteraciones con CONTINUE y EXIT",
+		contexto: "El módulo de control usa bucles anidados para recorrer combinaciones y detener el ciclo exterior bajo una condición.",
+		objetivo: "Distinguir entre saltar la iteración actual y salir de un bucle etiquetado.",
+		estrategia: "Avanzar por pasos, observar DBMS_OUTPUT y comparar el flujo al activar CONTINUE externo y EXIT externo.",
+		aprendizaje: "Las etiquetas permiten dirigir el flujo al bucle correcto; las salidas visibles ayudan a comprobar qué iteraciones se omitieron.",
+		archivo: "01_control_plsql19c.sql",
+		destino: "plsql",
+	},
+	{
+		numero: "05",
+		area: "PL/SQL · FUNCIONES",
+		titulo: "Diseñar funciones almacenadas que se puedan usar desde SQL",
+		contexto: "El módulo construye funciones de notas y muestra errores provocados, rutas sin RETURN, excepciones, caché y paquetes.",
+		objetivo: "Crear una función con contrato claro, comprobar su compilación y verificar sus resultados desde un bloque y una consulta.",
+		estrategia: "Seguir cada paso del script, ejecutar SHOW ERRORS después de compilar y contrastar el comportamiento con los casos esperados.",
+		aprendizaje: "Una función debe devolver un valor por todas sus rutas y evitar DML cuando se invoca desde una sentencia SQL.",
+		archivo: "02_funciones_plsql19c.sql",
+		destino: "funciones",
+	},
+	{
+		numero: "06",
+		area: "PL/SQL · PROCEDIMIENTOS",
+		titulo: "Validar una matrícula y conservar la transacción del llamador",
+		contexto: "El módulo registra matrículas con validaciones de estudiante, duplicados y cupo; también observa errores y concurrencia entre sesiones.",
+		objetivo: "Hacer que la operación rechace estados inválidos sin confirmar por su cuenta los cambios del llamador.",
+		estrategia: "Validar antes de modificar, bloquear el cupo con FOR UPDATE, devolver el identificador y probar errores y espera concurrente en dos sesiones.",
+		aprendizaje: "Separar validación, operación y confirmación evita dejar trabajo a medias y permite que quien inicia la transacción decida cuándo confirmar.",
+		archivo: "03_procedimientos_plsql19c.sql",
+		destino: "concurrencia",
+	},
+	{
+		numero: "07",
+		area: "PL/SQL · PAQUETES Y PRUEBAS",
+		titulo: "Probar inventario, excepciones y bitácora autónoma",
+		contexto: "El laboratorio define un paquete de inventario con operaciones, consultas de stock, errores de negocio y registro independiente de errores.",
+		objetivo: "Comprobar el contrato público, las reglas de inventario y qué datos sobreviven a un ROLLBACK.",
+		estrategia: "Ejecutar las pruebas identificadas P01–P16, verificar objetos y errores en el diccionario y comparar inventario y bitácora antes y después del ROLLBACK.",
+		aprendizaje: "El estado de la transacción principal y la auditoría pueden tener ciclos de vida distintos cuando el registro usa una transacción autónoma.",
+		archivo: "PLSQL_03_Paquetes_pruebas.sql",
+		destino: "funciones",
+	},
+];
+
+const capturasEvidencia = [
+	{
+		titulo: "Trabajo concurrente con SKIP LOCKED",
+		pagina: "5",
+		imagen: "/e-portafolio/evidencias/banco-andino-skip-locked-sesiones.png",
+		alt: "Captura de dos sesiones que toman lotes distintos de tareas con FOR UPDATE SKIP LOCKED.",
+		detalle: "Las sesiones A y B toman cinco tareas distintas cada una; la salida muestra los identificadores de ambos lotes.",
+		scripts: ["banco-andino/01_sesion_A.sql", "banco-andino/01_sesion_B.sql"],
+	},
+	{
+		titulo: "Ranking de productos por familia",
+		pagina: "12",
+		imagen: "/e-portafolio/evidencias/sql-ranking-por-familia.png",
+		alt: "Tabla de resultados con familia, producto, saldo captado, porcentaje y puesto.",
+		detalle: "El resultado presenta los primeros productos de cada familia con su participación y posición.",
+		scripts: ["banco-andino/03_sql_avanzado.sql"],
+	},
+	{
+		titulo: "Acumulado y promedio móvil mensual",
+		pagina: "13",
+		imagen: "/e-portafolio/evidencias/sql-analitico-mensual.png",
+		alt: "Resultados mensuales con acumulado, valor del mes anterior, variación porcentual y promedio móvil de tres meses.",
+		detalle: "La tabla muestra las métricas de ventana calculadas a lo largo de los doce meses.",
+		scripts: ["banco-andino/03_sql_avanzado.sql"],
+	},
+	{
+		titulo: "Resumen de la jerarquía recursiva",
+		pagina: "13",
+		imagen: "/e-portafolio/evidencias/sql-jerarquia-recursiva.png",
+		alt: "Resultado resumido del saldo captado por línea de negocio.",
+		detalle: "La jerarquía de productos se consolida en un saldo por línea de negocio.",
+		scripts: ["banco-andino/03_sql_avanzado.sql"],
+	},
+	{
+		titulo: "Ajustes mensuales con MERGE",
+		pagina: "14",
+		imagen: "/e-portafolio/evidencias/sql-merge-cierre-mensual.png",
+		alt: "Código SQL de MERGE para aplicar ajustes agrupados y consultar cuentas que no podrían quedar con saldo no negativo.",
+		detalle: "El MERGE agrupa ajustes por cuenta y aplica el cambio solo cuando el saldo no queda negativo; la consulta posterior identifica excepciones.",
+		scripts: ["banco-andino/03_sql_avanzado.sql"],
+	},
+	{
+		titulo: "Plan resultante de la consulta del tablero",
+		pagina: "21",
+		imagen: "/e-portafolio/evidencias/plan-resultado-indice.png",
+		alt: "Plan de ejecución con INDEX RANGE SCAN sobre IX_TRANSF_FECHA_ESTADO.",
+		detalle: "El plan usa el índice de transferencias por fecha y estado; mantiene accesos completos para las otras tablas del tablero.",
+		scripts: ["banco-andino/04_reto.sql"],
 	},
 ];
 
@@ -100,6 +231,8 @@ const studyTopics = [
 				<nav>
 					<a href="#presentacion">Perfil</a>
 					<a href="#evidencias">Evidencias</a>
+					<a href="#evidencias-practicas">Prácticas</a>
+					<a href="#resultados">Resultados</a>
 					<a href="#estudio">Estudio</a>
 					<a href="#investigaciones">Investigaciones</a>
 				</nav>
@@ -118,6 +251,7 @@ const studyTopics = [
 					<div class="buttons">
 						<a href="#evidencias" class="button primary">Ver evidencias</a>
 						<a href="#estudio" class="button secondary">Material de estudio</a>
+						<a href="https://github.com/Medinaosp/e-portafolio" class="button secondary" target="_blank" rel="noreferrer">Código en GitHub ↗</a>
 					</div>
 				</div>
 
@@ -183,9 +317,62 @@ const studyTopics = [
 				</div>
 			</section>
 
+			<section id="evidencias-practicas" class="section detail-section">
+				<div class="section-heading">
+					<p class="eyebrow">03 — EVIDENCIAS PRÁCTICAS</p>
+					<h2>Del concepto al ejercicio</h2>
+					<p>Cada práctica presenta contexto, objetivo, estrategia y aprendizaje. Las capturas del informe grupal documentan resultados de SQL avanzado, optimización y concurrencia; los scripts completos están disponibles para consulta.</p>
+				</div>
+
+				<div class="practice-grid">
+					{practicalEvidences.map((e) => (
+						<article class="practice-card">
+							<div class="practice-topline"><span class="number">{e.numero}</span><span class="tag">{e.area}</span></div>
+							<h3>{e.titulo}</h3>
+							<dl>
+								<div><dt>Contexto</dt><dd>{e.contexto}</dd></div>
+								<div><dt>Objetivo</dt><dd>{e.objetivo}</dd></div>
+								<div><dt>Estrategia</dt><dd>{e.estrategia}</dd></div>
+								<div><dt>Aprendizaje clave</dt><dd>{e.aprendizaje}</dd></div>
+							</dl>
+							<div class="practice-actions">
+								<a class="file-link" href={`/e-portafolio/material/sql/${e.archivo}`} download>Descargar {e.archivo}</a>
+								<a class="file-link" href={`#${e.destino}`}>Ver tema →</a>
+							</div>
+						</article>
+					))}
+				</div>
+
+				<div id="resultados" class="evidence-gallery">
+					<div class="gallery-heading">
+						<span class="card-label">TALLER INTEGRADOR · INFORME DE EQUIPO</span>
+						<h3>Resultados de ejecución</h3>
+						<p>Recortes fieles de las capturas incluidas en el informe del Taller Integrador Banco Andino. Cada resultado enlaza al script correspondiente.</p>
+					</div>
+					<div class="screenshot-grid">
+						{capturasEvidencia.map((e) => (
+							<figure class="screenshot-card">
+								<a class="screenshot-image" href={e.imagen} target="_blank" rel="noreferrer" aria-label={`Abrir captura: ${e.titulo}`}>
+									<img src={e.imagen} alt={e.alt} loading="lazy" />
+								</a>
+								<figcaption>
+									<span class="screenshot-source">Informe grupal · página {e.pagina}</span>
+									<h4>{e.titulo}</h4>
+									<p>{e.detalle}</p>
+									{e.scripts.map((script) => (
+										<a class="file-link" href={`/e-portafolio/material/sql/${script}`} download>Ver {script.split("/").at(-1)} →</a>
+									))}
+								</figcaption>
+							</figure>
+						))}
+					</div>
+
+				</div>
+			</section>
+
 			<section id="sql" class="section detail-section">
 				<div class="section-heading">
-					<p class="eyebrow">03 — SQL</p>
+					<p class="eyebrow">04 — SQL</p>
 					<h2>Consultas y talleres SQL</h2>
 					<p>Ejercicios reales sobre el esquema HR y prácticas de SQL avanzado.</p>
 				</div>
@@ -245,7 +432,7 @@ JOIN DEPARTAMENTO D
 
 			<section id="plsql" class="section detail-section">
 				<div class="section-heading">
-					<p class="eyebrow">04 — PL/SQL</p>
+					<p class="eyebrow">05 — PL/SQL</p>
 					<h2>Sentencias de control</h2>
 					<p>La práctica de PL/SQL está organizada paso a paso y utiliza DBMS_OUTPUT para observar la ejecución.</p>
 				</div>
@@ -283,7 +470,7 @@ END;
 
 			<section id="funciones" class="section detail-section">
 				<div class="section-heading">
-					<p class="eyebrow">05 — PL/SQL AVANZADO</p>
+					<p class="eyebrow">06 — PL/SQL AVANZADO</p>
 					<h2>Funciones almacenadas</h2>
 					<p>Las diapositivas de funciones amplían el bloque anónimo hacia unidades almacenadas en la base de datos.</p>
 				</div>
@@ -323,7 +510,7 @@ END;
 
 			<section id="concurrencia" class="section detail-section">
 				<div class="section-heading">
-					<p class="eyebrow">06 — ORACLE</p>
+					<p class="eyebrow">07 — ORACLE</p>
 					<h2>Transacciones, concurrencia y bloqueos</h2>
 					<p>Las prácticas utilizan dos sesiones reales para reproducir comportamientos que no aparecen trabajando en una sola conexión.</p>
 				</div>
@@ -341,7 +528,7 @@ END;
 
 		<section id="indices" class="section detail-section">
 			<div class="section-heading">
-				<p class="eyebrow">07 — OPTIMIZACIÓN</p>
+				<p class="eyebrow">08 — OPTIMIZACIÓN</p>
 				<h2>Índices y planes de ejecución</h2>
 				<p>El objetivo no es crear índices indiscriminadamente, sino entender qué consulta concreta se quiere acelerar y cómo decide Oracle.</p>
 			</div>
@@ -371,24 +558,21 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 
 		<section id="banco-andino" class="section detail-section">
 			<div class="section-heading">
-				<p class="eyebrow">08 — TALLER INTEGRADOR</p>
+				<p class="eyebrow">09 — TALLER INTEGRADOR</p>
 				<h2>Banco Andino</h2>
-				<p>El taller reúne en un mismo caso transacciones, concurrencia, bloqueos, índices, planes de ejecución y SQL avanzado.</p>
+				<p>El archivo disponible documenta el reto de transferencias. El código de preparación, los bloqueos, los cambios de saldo y los movimientos contables quedan reunidos en una sola transacción.</p>
 			</div>
 
 			<div class="bank-grid">
-				<article class="bank-card"><span>PARTE 1</span><h3>Transacciones y concurrencia</h3><p>Actualización perdida, FOR UPDATE, bloqueo optimista, SKIP LOCKED, llave foránea sin índice e interbloqueo ORA-00060.</p></article>
-				<article class="bank-card"><span>PARTE 2</span><h3>Índices</h3><p>Plan antes/después, índices compuestos, funciones sobre columnas, decisiones del optimizador y costo de escritura.</p></article>
-				<article class="bank-card"><span>PARTE 3</span><h3>SQL avanzado</h3><p>Ranking, porcentaje por familia, acumulados, LAG, promedio móvil, jerarquía de tres niveles y MERGE.</p></article>
-				<article class="bank-card"><span>PARTE 4</span><h3>Reto integrador</h3><p>Identificación de defectos, secuencia corregida, bloqueo determinista y optimización de la consulta del tablero.</p></article>
+				<article class="bank-card"><span>ESTRATEGIA</span><h3>Bloqueo determinista</h3><p>Las dos cuentas se bloquean en orden fijo para reducir el riesgo de que transferencias simultáneas se queden esperando entre sí.</p></article>
+				<article class="bank-card"><span>INTEGRIDAD</span><h3>Confirmar al final</h3><p>Se comprueban los saldos y el estado de la transferencia antes de confirmar juntos los cambios.</p></article>
 			</div>
 
-			
 		</section>
 
 		<section id="estudio" class="section study-section">
 			<div class="section-heading">
-				<p class="eyebrow">09 — MATERIAL DE ESTUDIO</p>
+				<p class="eyebrow">10 — MATERIAL DE ESTUDIO</p>
 				<h2>Guía rápida para estudiar</h2>
 				<p>Resumen organizado a partir de las diapositivas y scripts recibidos. Sirve como índice para volver rápidamente a cada concepto.</p>
 			</div>
@@ -417,22 +601,34 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 
 		<section id="investigaciones" class="section detail-section">
 			<div class="section-heading">
-				<p class="eyebrow">10 — INVESTIGACIONES Y ANOTACIONES</p>
+				<p class="eyebrow">11 — INVESTIGACIONES Y ANOTACIONES</p>
 				<h2>Temas que vale la pena conservar</h2>
 				<p>Notas de investigación construidas alrededor de los problemas que aparecen en los talleres.</p>
 			</div>
 
 			<div class="research-grid">
-				<article class="research-card"><span class="card-label">01</span><h3>¿Por qué un índice puede no usarse?</h3><p>Relacionar selectividad, cantidad de filas, costo estimado y estadísticas. El optimizador puede preferir TABLE ACCESS FULL cuando recorrer el índice sería más costoso.</p></article>
-				<article class="research-card"><span class="card-label">02</span><h3>¿Qué cambia con NULL?</h3><p>Estudiar la lógica de tres valores y sus efectos en WHERE, NOT IN, agregaciones y LEFT JOIN.</p></article>
-				<article class="research-card"><span class="card-label">03</span><h3>¿Bloquear basta para evitar deadlocks?</h3><p>El caso Banco Andino muestra que dos transferencias cruzadas requieren un orden determinista de bloqueo; no basta con bloquear las filas.</p></article>
-				<article class="research-card"><span class="card-label">04</span><h3>¿Cuándo usar SQL y cuándo PL/SQL?</h3><p>Comparar el procesamiento declarativo de SQL con las estructuras procedurales de PL/SQL y observar el costo de procesar fila a fila frente a operaciones masivas.</p></article>
-				<article class="research-card"><span class="card-label">05</span><h3>ROWS vs RANGE</h3><p>Revisar cómo cambia una función de ventana cuando el marco se define por filas frente a valores del ordenamiento, especialmente cuando existen empates.</p></article>
-				<article class="research-card"><span class="card-label">06</span><h3>Funciones almacenadas</h3><p>Investigar dependencias, estado INVALID, privilegios, excepciones y el uso de funciones desde SQL según las diapositivas de PL/SQL.</p></article>
+				<article class="research-card"><span class="card-label">01</span><h3>¿Por qué un índice puede no usarse?</h3><p>Relacionar selectividad, cantidad de filas, costo estimado y estadísticas. El optimizador puede preferir TABLE ACCESS FULL cuando recorrer el índice sería más costoso.</p><a href="#indices">Conectar con la práctica de planes →</a></article>
+				<article class="research-card"><span class="card-label">02</span><h3>¿Qué cambia con NULL?</h3><p>Estudiar la lógica de tres valores y sus efectos en WHERE, NOT IN, agregaciones y LEFT JOIN.</p><a href="#sql">Conectar con SQL y HR →</a></article>
+				<article class="research-card"><span class="card-label">03</span><h3>¿Bloquear basta para evitar deadlocks?</h3><p>El reto Banco Andino muestra por qué dos transferencias simultáneas deben bloquear las cuentas en un orden determinista.</p><a href="#banco-andino">Conectar con el reto →</a></article>
+				<article class="research-card"><span class="card-label">04</span><h3>¿Cuándo usar SQL y cuándo PL/SQL?</h3><p>Comparar el procesamiento declarativo de SQL con los bloques procedurales y el procesamiento masivo del módulo de procedimientos.</p><a href="#evidencias-practicas">Ver evidencias relacionadas →</a></article>
+				<article class="research-card"><span class="card-label">05</span><h3>ROWS vs RANGE</h3><p>Profundización propuesta: comparar marcos de ventana ROWS y RANGE cuando hay empates en la columna de ordenamiento, usando el mismo conjunto de datos.</p></article>
+				<article class="research-card"><span class="card-label">06</span><h3>¿Qué pasa cuando cambia una dependencia?</h3><p>Revisar errores, estado INVALID, privilegios y recompilación de funciones y paquetes almacenados.</p><a href="#evidencias-practicas">Conectar con funciones y paquetes →</a></article>
 			</div>
 		</section>
 
-		
+		<section id="bitacora" class="section detail-section">
+			<div class="section-heading">
+				<p class="eyebrow">12 — BITÁCORA</p>
+				<h2>Reflexión de cada evidencia</h2>
+				<p>Registra una reflexión personal por evidencia y relaciónala con el resultado observado.</p>
+			</div>
+
+			<div class="reflection-grid">
+				<article class="reflection-card"><span>APRENDIZAJE</span><h3>¿Qué aprendí?</h3><p>Relaciona tu resultado con el aprendizaje clave de la práctica y escribe qué puedes explicar o aplicar ahora.</p></article>
+				<article class="reflection-card"><span>DIFICULTAD</span><h3>¿Qué me costó?</h3><p>Describe el error, concepto o parte del ejercicio que necesitó más trabajo e incluye el mensaje observado.</p></article>
+				<article class="reflection-card"><span>SOLUCIÓN</span><h3>¿Cómo lo resolví?</h3><p>Cuenta los pasos de la corrección y apóyala con una captura propia del código y el resultado.</p></article>
+			</div>
+		</section>
 		</main>
 
 		<footer>
@@ -472,8 +668,8 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 	.section-heading h2 { font-size: clamp(2.5rem,5vw,4rem); line-height: 1; margin-bottom: 18px; letter-spacing: -.04em; }
 	.section-heading > p:last-child { color: #8f98a8; }
 	.presentation-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; }
-	.photo-placeholder { min-height: 430px; border: 1px solid #292d36; border-radius: 18px; overflow: hidden; background: #11141b; }
-	.photo-placeholder img { width: 100%; height: 430px; object-fit: cover; }
+	.photo-placeholder { align-self: start; min-height: 0; border: 1px solid #292d36; border-radius: 18px; overflow: hidden; background: #11141b; }
+	.photo-placeholder img { display: block; width: 100%; height: auto; object-fit: cover; }
 	.presentation-text h3 { font-size: 2rem; margin-bottom: 20px; }
 	.presentation-text > p { color: #aeb5c2; margin-bottom: 18px; }
 	.course-box { margin: 30px 0; padding: 20px; border-left: 3px solid #7c8cff; background: #11141b; display: flex; flex-direction: column; }
@@ -485,6 +681,30 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 	.evidencias,.detail-section,.study-section { border-top: 1px solid #20242c; }
 	.evidence-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
 	.evidence-card,.detail-card,.study-card,.research-card,.reflection-card { padding: 30px; border: 1px solid #292d36; border-radius: 15px; background: #11141b; }
+	.practice-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+	.practice-card { padding: 28px; border: 1px solid #292d36; border-radius: 15px; background: linear-gradient(145deg,#151821,#11141b); }
+	.practice-topline { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+	.practice-topline .tag { margin-left: 0; }
+	.practice-card h3 { font-size: 1.35rem; line-height: 1.3; margin: 18px 0; }
+	.practice-card dl { display: grid; gap: 14px; }
+	.practice-card dl div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+	.practice-card dt { color: #c4cad5; font-size: .82rem; font-weight: 700; }
+	.practice-card dd { color: #8f98a8; font-size: .9rem; }
+	.practice-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+	.practice-actions .file-link { margin-left: 0; }
+	.evidence-gallery { margin-top: 50px; scroll-margin-top: 90px; }
+	.gallery-heading { max-width: 760px; margin-bottom: 24px; }
+	.gallery-heading h3 { margin: 8px 0; font-size: 1.7rem; }
+	.gallery-heading p,.screenshot-card p { color: #8f98a8; }
+	.screenshot-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+	.screenshot-card { overflow: hidden; border: 1px solid #292d36; border-radius: 15px; background: #11141b; }
+	.screenshot-image { display: grid; place-items: center; min-height: 220px; padding: 12px; background: #090b0f; }
+	.screenshot-image img { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; object-fit: contain; }
+	.screenshot-card figcaption { padding: 20px 22px 24px; }
+	.screenshot-source { color: #697181; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+	.screenshot-card h4 { margin: 8px 0; font-size: 1.05rem; }
+	.screenshot-card p { margin: 0 0 8px; font-size: .86rem; }
+	.evidence-note { margin-top: 18px; padding: 14px 16px; border-left: 2px solid #7c8cff; background: #151821; color: #aeb5c2; font-size: .85rem; }
 	.evidence-card:hover,.detail-card:hover,.study-card:hover,.research-card:hover { border-color: #596174; transform: translateY(-3px); transition: .2s ease; }
 	.number { color: #697181; font-size: .8rem; font-weight: 700; }
 	.tag { display: inline-block; margin-left: 10px; padding: 4px 8px; border: 1px solid #343945; border-radius: 999px; color: #8f98a8; font-size: .63rem; letter-spacing: .08em; }
@@ -518,9 +738,6 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 	.bank-card span { color: #7c8cff; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
 	.bank-card h3 { margin: 12px 0 8px; }
 	.bank-card p { color: #8f98a8; }
-	.diagram-placeholder { min-height: 220px; margin-top: 18px; border: 1px dashed #3a4150; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #697181; padding: 25px; }
-	.diagram-placeholder strong { color: #aeb5c2; font-size: 1.2rem; margin: 7px 0; }
-	.diagram-placeholder small { max-width: 700px; }
 	.study-box { margin-top: 18px; padding: 28px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; border: 1px solid #292d36; border-radius: 15px; background: linear-gradient(145deg,#151821,#101218); }
 	.study-box h3 { margin-top: 7px; }
 	.study-box ol { padding-left: 20px; color: #aeb5c2; }
@@ -529,6 +746,6 @@ FROM TABLE(DBMS_XPLAN.DISPLAY(
 	.reflection-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
 	.reflection-card span { color: #697181; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
 	footer { max-width: 1180px; margin: auto; padding: 35px 24px; border-top: 1px solid #20242c; display: flex; justify-content: space-between; color: #697181; font-size: .8rem; }
-	@media (max-width: 900px) { .hero,.presentation-grid,.sql-layout,.code-demo,.study-box { grid-template-columns: 1fr; } .study-grid,.research-grid,.reflection-grid,.three-column { grid-template-columns: 1fr; } }
-	@media (max-width: 650px) { nav { gap: 10px; } nav a { font-size: .7rem; } .evidence-grid,.two-column,.bank-grid { grid-template-columns: 1fr; } h1 { font-size: 3.1rem; } .file-row { grid-template-columns: 1fr; gap: 8px; } footer { flex-direction: column; } }
+	@media (max-width: 900px) { .hero,.presentation-grid,.sql-layout,.code-demo,.study-box { grid-template-columns: 1fr; } .study-grid,.research-grid,.reflection-grid,.three-column,.practice-grid,.screenshot-grid { grid-template-columns: 1fr; } }
+	@media (max-width: 650px) { nav { gap: 10px; } nav a { font-size: .7rem; } .evidence-grid,.two-column,.bank-grid { grid-template-columns: 1fr; } .practice-card dl div { grid-template-columns: 1fr; gap: 3px; } h1 { font-size: 3.1rem; } .file-row { grid-template-columns: 1fr; gap: 8px; } footer { flex-direction: column; } }
 </style>
